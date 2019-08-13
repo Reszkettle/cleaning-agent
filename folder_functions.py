@@ -24,3 +24,14 @@ def move_files(path):
                     renamed_path = downloads_prefix + 'copy_' + f
                     os.rename(current_dir, renamed_path)
                     shutil.move(renamed_path, downloads_prefix + key)
+
+
+def get_path():
+    path = input("Input path: ")
+    try:
+        os.chdir(path)
+    except:
+        print("Something is wrong with specified directory.")
+        return None
+
+    return path
