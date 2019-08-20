@@ -1,10 +1,12 @@
 import os
 import shutil
 from catalogs import *
-import tkfilebrowser as tkfile
+from tkinter import filedialog
+from tkinter import Tk
 
 
-def make_directories(folders):
+def make_directories(folders, path):
+    os.chdir(path=path)
     try:
         for folder in folders:
             if not os.path.isdir('./' + folder):
@@ -27,6 +29,10 @@ def move_files(path):
                     shutil.move(renamed_path, downloads_prefix + key)
 
 
-def get_folder(title="Select the folder you want to clean"):
-    path = tkfile.askopendirname(title=title)
+def get_folder(title="Choose folder to organize"):
+    root = Tk()
+    root.iconbitmap('icon.ico')
+    root.withdraw()
+    path = filedialog.askdirectory(title=title)
+    print(path)
     return path
