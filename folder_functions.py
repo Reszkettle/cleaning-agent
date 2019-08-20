@@ -6,6 +6,12 @@ from tkinter import Tk
 
 
 def make_directories(folders, path):
+    """
+    Checks if directory is empty, then makes directories for special file extensions.
+    :param folders: List of directories.
+    :param path: Path to folder in which directories will be made.
+    :return: 0 if directory is empty, 1 if directory needs to be organized.
+    """
     os.chdir(path=path)
     list_items = os.listdir(path=path)
     list_length = len(list_items)
@@ -25,6 +31,11 @@ def make_directories(folders, path):
 
 
 def move_files(path):
+    """
+    Moving files to corresponding folders considering their extensions.
+    :param path: Path to folder containing files to move.
+    :return: Number of items successfully moved. \
+    """
     moved = 0
     for f in os.listdir(path):
         downloads_prefix = path + '/'
@@ -42,6 +53,11 @@ def move_files(path):
 
 
 def get_folder(title="Choose folder to organize"):
+    """
+    Selecting folder to organize.
+    :param title: Title of window.
+    :return: Path to selected folder.
+    """
     root = Tk()
     root.iconbitmap('icon.ico')
     root.withdraw()
