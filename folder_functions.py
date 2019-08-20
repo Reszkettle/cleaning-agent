@@ -1,6 +1,7 @@
 import os
 import shutil
 from catalogs import *
+import tkfilebrowser as tkfile
 
 
 def make_directories(folders):
@@ -26,12 +27,6 @@ def move_files(path):
                     shutil.move(renamed_path, downloads_prefix + key)
 
 
-def get_path():
-    path = input("Input path: ")
-    try:
-        os.chdir(path)
-    except:
-        print("Something is wrong with specified directory.")
-        return None
-
+def get_folder(title="Select the folder you want to clean"):
+    path = tkfile.askopendirname(title=title)
     return path
