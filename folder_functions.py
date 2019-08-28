@@ -38,16 +38,19 @@ def move_files(path):
     """
     moved = 0
     for f in os.listdir(path):
-        downloads_prefix = path + '/'
-        current_dir = downloads_prefix + f
+        prefix = path + '/'
+        current_dir = prefix + f
         for key in extensions.keys():
             if f.endswith(extensions[key]):
                 try:
-                    shutil.move(current_dir, downloads_prefix + key)
-                except:
-                    renamed_path = downloads_prefix + 'copy_' + f
-                    os.rename(current_dir, renamed_path)
-                    shutil.move(renamed_path, downloads_prefix + key)
+                    os.rename(current_dir, prefix + key + '/' + f)
+                except OSError:
+                    for i in range(10000):
+                        try:
+                            os.rename(current_dir, prefix + key + '/' + 'copy_' + str(i) + f)
+                        except:
+                            continue
+                        break
                 moved += 1
     return moved
 
