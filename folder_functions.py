@@ -1,6 +1,6 @@
 import os
 import shutil
-from catalogs import *
+from catalogs import extensions
 from tkinter import filedialog
 from tkinter import Tk
 
